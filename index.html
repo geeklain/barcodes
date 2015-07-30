@@ -10,13 +10,20 @@
   <script type="text/javascript" language="javascript">
     require(['barcode-reader'], function (reader) {
 
-      var codeFound = function(result) {
-        var codeEl = document.querySelector('#code');
-        codeEl.textContent = result;
+      var callback = function(timing, result) {
+      
+      	if (timing) {
+      		var codeEl = document.querySelector('#timing');
+			codeEl.textContent = timing;
+      	}
+      	if (result) {
+			var codeEl = document.querySelector('#code');
+			codeEl.textContent = result;      	
+      	}
       };
 
       document.querySelector('#startButton').addEventListener('click', function() {
-        reader.start(codeFound);
+        reader.start(callback);
       });
       document.querySelector('#stopButton').addEventListener('click', function() {
         reader.stop();
@@ -39,6 +46,7 @@
   <input id="startButton" type="submit" value="Start" />
   <input id="stopButton" type="submit" value="Stop" />
 </p>
+<p id="timing"></p>
 <p id="code"></p>
 
 </body>

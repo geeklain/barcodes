@@ -87,17 +87,19 @@ define(['gwtModuleLoader!zxing'], function (Barcode) {
      var result = Barcode.decode(argbPixels, width, height);*/
     var result = Barcode.decode(rgbaPixels, width, height);
     var end = performance.now();
-    console.log("Call to decode took " + (end - lastTick) + " milliseconds.")
+    
 
     if (result) {
       stop();
-      callback(result);
+      callback("Call to decode took " + (end - lastTick) + " milliseconds.", result);
       return;
     }
 
     if (stopped) {
       return;
     }
+
+	callback("Call to decode took " + (end - lastTick) + " milliseconds.");
 
     var timeSinceLastTick = end - lastTick;
     if (timeSinceLastTick >= periodMs) {
