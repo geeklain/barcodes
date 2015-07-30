@@ -30,7 +30,7 @@ define(['gwtModuleLoader!zxing'], function (Barcode) {
 	   }
 	} : null);
     
-    var constraints = { audio: false, video: {facingMode: "environment" } };
+    var constraints = { audio: false, video: true };
     
 	navigator.mediaDevices.getUserMedia(constraints)
 	.then(function (stream) {
