@@ -74,17 +74,6 @@ define(['gwtModuleLoader!zxing'], function (Barcode) {
     var data = context.getImageData(0, 0, width, height);
 
     var rgbaPixels = data.data;
-    /*    var argbPixels = [];
-     for (var i = 0, length = width * height; i < length; i++) {
-
-     var pos = i * 4;
-     var r = rgbaPixels[pos] << 16;
-     var g = rgbaPixels[pos + 1] << 8;
-     var b = rgbaPixels[pos + 2];
-     var argb = r + g + b;
-     argbPixels.push(argb);
-     }
-     var result = Barcode.decode(argbPixels, width, height);*/
     var result = Barcode.decode(rgbaPixels, width, height);
     var end = performance.now();
     
@@ -106,7 +95,6 @@ define(['gwtModuleLoader!zxing'], function (Barcode) {
       setTimeout(processImage, 0);
     }
     else {
-      console.log(periodMs - timeSinceLastTick);
       setTimeout(processImage, periodMs - timeSinceLastTick);
     }
   };
